@@ -1,11 +1,13 @@
+sw_lp=0
+sw_ls=1
+sw_le=1
+sw_la=1
+
 function lp(...)
-    --info = debug.getinfo(1)['name']
---[[
-    info = debug.getinfo(1)
-    for k,v in pairs(info) do
-        print(k,v)
+    if sw_lp == 0 then
+        return
     end
---]]
+    print(...)
 end
 
 function ls(...)
