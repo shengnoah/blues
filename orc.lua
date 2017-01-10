@@ -11,8 +11,8 @@ function Application:new()
         base.id = 1123
 
         function base.init(this, req, res)
-                print("init")
-                print(base.id)
+                logp("init")
+                logp(base.id)
         end
 
         local app = {}
@@ -20,33 +20,33 @@ function Application:new()
         app.router = Route:getInstance()
         app.req = Request:getInstance()
         app.get = function(this, url, callback)
-                print("########## app:get (start)############")
-                print(type(this))
-                print("-----------------")
+                logp("########## app:get (start)############")
+                logp(type(this))
+                logp("-----------------")
                 for k,v in pairs(this) do
-                        print(k,v)
+                        logp(k,v)
                 end
-                print("-----------------")
-                print(type(url))
-                print(url)
-                print("-----------------")
-                print(type(callback))
+                logp("-----------------")
+                logp(type(url))
+                logp(url)
+                logp("-----------------")
+                logp(type(callback))
                 --callback()
-                print("-----------------")
+                logp("-----------------")
                 app:router(this, url, callback, "GET")
-                print("########## app:get ( end )###########")
+                logp("########## app:get ( end )###########")
         end
 
         app.post = function(this, url, callback)
-                print("############[ app.post ]###############")
+                logp("############[ app.post ]###############")
                 app:router(this, url, callback, "POST")
         end
 
         app.run = function()
                 fun = Route:run(app.router)
-                print("@@@@@app.run( start )@@@@@@@")
+                logp("@@@@@app.run( start )@@@@@@@")
                 fun(app.req, app.id)
-                print("@@@@@app.run(  end   )@@@@@@@")
+                logp("@@@@@app.run(  end   )@@@@@@@")
         end
 
 
@@ -62,24 +62,24 @@ function Application:get1(url, callback)
 end
 
 function Application:doEvent()
-        print("doEvent")
+        logp("doEvent")
         app.router("one", function()
-                print("test1")
+                logp("test1")
         end)
         app.router("two", function()
-                print("test2")
+                logp("test2")
         end)
         app.router("three", function()
-                print("test3")
+                logp("test3")
         end)
         Route:run(app.router)
 end
 
 function Application:run()
         fun = Route:run(app.router)
-        print("@@@@@ Application:run(start)@@@@@@@")
+        logp("@@@@@ Application:run(start)@@@@@@@")
         fun(app.req, app.id)
-        print("@@@@@ Applicaiton:run( end )@@@@@@@")
+        logp("@@@@@ Applicaiton:run( end )@@@@@@@")
 end
 
 function Application:fin()

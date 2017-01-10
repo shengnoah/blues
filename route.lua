@@ -15,21 +15,21 @@ function Route:getInstance()
 
         local base = {}
         function base.register(this, baseA, baseB, url, callback, meta)
-                print("$$$$$$$$$$[  base. register  ]$$$$$$$$$$$$$$$$$$$")
-                print(meta)
-                print(type(this))
+                logp("$$$$$$$$$$[  base. register  ]$$$$$$$$$$$$$$$$$$$")
+                logp(meta)
+                logp(type(this))
                 for k,v  in pairs(this) do
-                        print(k,v)
+                        logp(k,v)
                 end
-                print(type(baseA))
+                logp(type(baseA))
                 for k,v  in pairs(baseA) do
-                        print(k,v)
+                        logp(k,v)
                 end
-                print(type(baseB))
+                logp(type(baseB))
                 for k,v  in pairs(baseB) do
-                        print(k,v)
+                        logp(k,v)
                 end
-                print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+                logp("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
                 --get
                 if meta == "GET" then
@@ -52,8 +52,8 @@ function Route:run(router)
 
         if method == "POST" then
                 for k,v in pairs(router.map.post) do
-                        print(router.map.post[k][1])
-                        print(router.map.post[k][2])
+                        logp(router.map.post[k][1])
+                        logp(router.map.post[k][2])
                         if router.map.post[k][1] == url then
                                 return router.map.post[k][2]
                         end
@@ -62,8 +62,8 @@ function Route:run(router)
 
         if method == "GET" then
                 for k,v in pairs(router.map.get) do
-                        print(router.map.get[k][1])
-                        print(router.map.get[k][2])
+                        logp(router.map.get[k][1])
+                        logp(router.map.get[k][2])
                         if router.map.get[k][1] == url then
                                 return router.map.get[k][2]
                         end

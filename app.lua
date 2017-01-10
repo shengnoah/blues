@@ -1,31 +1,32 @@
+require "log"
 local Application = require "orc"
 app = Application.new()
 
 for k,v in pairs(app) do
-        print(k,v)
+        logp(k,v)
 end
 
 app:get("/testcase", function(request,id)
-        print("testcase")
+        logp("testcase")
 end)
 
 
 app:get("/def", function(request,id)
-        print("test def")
+        logp("test def")
 end)
 
 app:post("/post", function(request,id)
-        print("test post")
+        logp("test post")
 end)
 
 app:post("/post1", function(request,id)
-        print("test post1")
+        logp("test post1")
 end)
 
 --[[
 Application:get1("/testcaseA", function(request,id)
-        print("A")
-        print(request["url"])
+        logp("A")
+        logp(request["url"])
 end)
 --]]
 
