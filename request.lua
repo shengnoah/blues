@@ -9,14 +9,14 @@ function Request:getInstance()
         local instance = {
                         url="/request",
                         getName = function()
-                                logp("CRequest!")
+                                lp("CRequest!")
                         end
                         }
 
         instance.uri = "candy lab"
         setmetatable(instance, { __index = self,
                                  __call = function()
-                                                logp("Initial Instance")
+                                                lp("Initial Instance")
                                         end
                                  })
         return instance

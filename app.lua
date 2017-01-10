@@ -3,30 +3,32 @@ local Application = require "orc"
 app = Application.new()
 
 for k,v in pairs(app) do
-        logp(k,v)
+        lp(k,v)
 end
 
 app:get("/testcase", function(request,id)
-        logp("testcase")
+        --print(debug.getinfo(1)['name'])
+        lp("testcase")
 end)
 
 
 app:get("/def", function(request,id)
-        logp("test def")
+        print(debug.getinfo(1)['name'])
+        lp("test def")
 end)
 
 app:post("/post", function(request,id)
-        logp("test post")
+        lp("test post")
 end)
 
 app:post("/post1", function(request,id)
-        logp("test post1")
+        lp("test post1")
 end)
 
 --[[
 Application:get1("/testcaseA", function(request,id)
-        logp("A")
-        logp(request["url"])
+        lp("A")
+        lp(request["url"])
 end)
 --]]
 

@@ -11,8 +11,8 @@ function Application:new()
         base.id = 1123
 
         function base.init(this, req, res)
-                logp("init")
-                logp(base.id)
+                lp("init")
+                lp(base.id)
         end
 
         local app = {}
@@ -20,33 +20,34 @@ function Application:new()
         app.router = Route:getInstance()
         app.req = Request:getInstance()
         app.get = function(this, url, callback)
-                logp("########## app:get (start)############")
-                logp(type(this))
-                logp("-----------------")
+                ls('app:get')
+                lp(type(this))
+                ll()
                 for k,v in pairs(this) do
-                        logp(k,v)
+                        lp(k,v)
                 end
-                logp("-----------------")
-                logp(type(url))
-                logp(url)
-                logp("-----------------")
-                logp(type(callback))
+                lp("-----------------")
+                lp(type(url))
+                lp(url)
+                lp("-----------------")
+                lp(type(callback))
                 --callback()
-                logp("-----------------")
+                lp("-----------------")
                 app:router(this, url, callback, "GET")
-                logp("########## app:get ( end )###########")
+                le('app:get')
         end
 
         app.post = function(this, url, callback)
-                logp("############[ app.post ]###############")
+                ls('app.post')
                 app:router(this, url, callback, "POST")
+                le('app.post')
         end
 
         app.run = function()
                 fun = Route:run(app.router)
-                logp("@@@@@app.run( start )@@@@@@@")
+                ls('app.run')
                 fun(app.req, app.id)
-                logp("@@@@@app.run(  end   )@@@@@@@")
+                le('app.run')
         end
 
 
@@ -62,24 +63,24 @@ function Application:get1(url, callback)
 end
 
 function Application:doEvent()
-        logp("doEvent")
+        lp("doEvent")
         app.router("one", function()
-                logp("test1")
+                lp("test1")
         end)
         app.router("two", function()
-                logp("test2")
+                lp("test2")
         end)
         app.router("three", function()
-                logp("test3")
+                lp("test3")
         end)
         Route:run(app.router)
 end
 
 function Application:run()
         fun = Route:run(app.router)
-        logp("@@@@@ Application:run(start)@@@@@@@")
+        lp("@@@@@ Application:run(start)@@@@@@@")
         fun(app.req, app.id)
-        logp("@@@@@ Applicaiton:run( end )@@@@@@@")
+        lp("@@@@@ Applicaiton:run( end )@@@@@@@")
 end
 
 function Application:fin()
