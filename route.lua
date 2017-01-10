@@ -15,7 +15,7 @@ function Route:getInstance()
 
         local base = {}
         function base.register(this, baseA, baseB, url, callback, meta)
-                lp("$$$$$$$$$$[  base. register  ]$$$$$$$$$$$$$$$$$$$")
+                ls('base.register')
                 lp(meta)
                 lp(type(this))
                 for k,v  in pairs(this) do
@@ -29,8 +29,7 @@ function Route:getInstance()
                 for k,v  in pairs(baseB) do
                         lp(k,v)
                 end
-                lp("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-
+                ll()
                 --get
                 if meta == "GET" then
                         tinsert(this.map.get, {url, callback})
