@@ -49,6 +49,19 @@ function Route:getInstance()
                         tinsert(this.map.post, {url, callback})
                 end
 
+                ll('MAP.GET')
+                for k, v in pairs(this.map.get) do 
+                    for key,var in pairs(v) do
+                        lm(key,var)
+                    end
+                end
+                ll('MAP.POST')
+                for k, v in pairs(this.map.post) do 
+                    for key,var in pairs(v) do
+                        lm(key,var)
+                    end
+                end
+
                 le('route.base.register')
         end
 
@@ -60,25 +73,24 @@ end
 
 function Route:run(router)
         ls('route.run')
+        ll('MAP.GET')
+        for k, v in pairs(router.map.get) do 
+            for key,var in pairs(v) do
+                lm(key,var)
+            end
+        end
+        ll('MAP.POST')
+        for k, v in pairs(router.map.post) do 
+            for key,var in pairs(v) do
+                lm(key,var)
+            end
+         end
+
         ll('router')
-                ll('MAP.GET')
-                lm('===')
-                for k, v in pairs(router.map.get) do 
-                    for key,var in pairs(v) do
-                        lm(key,var)
-                    end
-                end
-                ll('MAP.POST')
-                for k, v in pairs(router.map.post) do 
-                    for key,var in pairs(v) do
-                        lm(key,var)
-                    end
-                end
-
-
         for k,v in ipairs(router) do
             lp(k,v)
         end
+
         local url = "/log"
         local method = "POST"
 

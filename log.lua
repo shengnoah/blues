@@ -1,6 +1,6 @@
 local colors = require("ansicolors")
 
-sw_pt=0
+sw_pt=1
 sw_lp=1
 sw_ls=1
 sw_le=1
@@ -13,6 +13,7 @@ function pt(...)
     if sw_pt == 0 then return end
     local metadata=...
     print(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
+    --print(...)
 end
 
 function lp(...)
