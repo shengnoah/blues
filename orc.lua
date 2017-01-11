@@ -9,7 +9,7 @@ function Application:init(this, req, res)
 end
 
 function Application:new()
-        ls('Application:new')
+        ls('Application.new')
         local base = {}
         base.id = 1123
 
@@ -49,8 +49,8 @@ function Application:new()
         end
 
         app.run = function()
-                fun = Route:run(app.router)
                 ls('Application.app.run')
+                fun = Route:run(app.router)
                 fun(app.req, app.id)
                 le('Application.app.run')
         end

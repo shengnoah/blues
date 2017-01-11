@@ -11,10 +11,11 @@ app:get("/testcase", function(request,id)
         lp("testcase")
 end)
 
-
 app:get("/def", function(request,id)
-        print(debug.getinfo(1)['name'])
+        ls("app.app:get")
+        --print(debug.getinfo(1)['name'])
         lp("test def")
+        le("app.app:get")
 end)
 
 app:post("/post", function(request,id)
