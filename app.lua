@@ -6,7 +6,7 @@ for k,v in pairs(app) do
         lp(k,v)
 end
 
---[[
+---[[
 app:get("/testcase", function(request,id)
         lp("testcase")
 end)
@@ -18,7 +18,7 @@ app:get("/def", function(request,id)
         le("app.app:get")
 end)
 
---[[
+---[[
 app:post("/post", function(request,id)
         lp("test post")
 end)

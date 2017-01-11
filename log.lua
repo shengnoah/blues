@@ -4,23 +4,30 @@ sw_pt=1
 sw_lp=1
 sw_ls=1
 sw_le=1
-sw_la=1
+sw_lr=1
 sw_ll=1
+sw_la=1
+
 
 function pt(...)
-    if sw_pt == 0 then
-        return
-    end
+    if sw_pt == 0 then return end
     local metadata=...
     print(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
-    
 end
 
 function lp(...)
-    if sw_lp == 0 then
-        return
-    end
+    if sw_lp == 0 then return end
     pt(...)
+end
+
+function pct(...)
+    if sw_pt == 0 then return end
+    local metadata=...
+    print(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
+end
+
+function lsp(...)
+    print(...)
 end
 
 function ls(...)
@@ -35,10 +42,7 @@ function ls(...)
 end
 
 function le(...)
-    if sw_le == 0 then
-        return
-    end
-
+    if sw_le == 0 then return end
     if type(arg[1]) == 'nil' then
         fn_name=' '
     else
@@ -50,7 +54,6 @@ end
 function ll(...)
     var_name = ''
     if sw_ll == 0 then return end
-
     if type(arg[1]) == 'nil' then
         var_name=' '
     else
@@ -61,6 +64,10 @@ end
 
 
 function la(...)
+    --pt(...)
+end
+
+function lr(...)
     --pt(...)
 end
 

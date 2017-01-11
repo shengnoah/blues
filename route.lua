@@ -48,6 +48,20 @@ function Route:getInstance()
                 elseif meta == "POST" then
                         tinsert(this.map.post, {url, callback})
                 end
+
+                ll('MAP.GET')
+                for k, v in pairs(this.map.get) do 
+                    for key,var in pairs(v) do
+                        lsp(key,var)
+                    end
+                end
+                ll('MAP.POST')
+                for k, v in pairs(this.map.post) do 
+                    for key,var in pairs(v) do
+                        lsp(key,var)
+                    end
+                end
+
                 le('route.base.register')
         end
 
