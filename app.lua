@@ -6,11 +6,11 @@ for k,v in pairs(app) do
         lp(k,v)
 end
 
+--[[
 app:get("/testcase", function(request,id)
-        --print(debug.getinfo(1)['name'])
         lp("testcase")
 end)
-
+--]]
 app:get("/def", function(request,id)
         ls("app.app:get")
         --print(debug.getinfo(1)['name'])
@@ -18,6 +18,7 @@ app:get("/def", function(request,id)
         le("app.app:get")
 end)
 
+--[[
 app:post("/post", function(request,id)
         lp("test post")
 end)
@@ -25,6 +26,8 @@ end)
 app:post("/post1", function(request,id)
         lp("test post1")
 end)
+
+--]]
 
 --[[
 Application:get1("/testcaseA", function(request,id)

@@ -19,16 +19,25 @@ function Route:getInstance()
         local base = {}
         function base.register(this, baseA, baseB, url, callback, meta)
                 ls('route.base.register')
+                ll('meta')
                 lp(meta)
+                ll('callback')
+                lp(callback)
+                ll('this type')
                 lp(type(this))
+                ll('this')
                 for k,v  in pairs(this) do
                         lp(k,v)
                 end
+                ll('baseA type')
                 lp(type(baseA))
+                ll('baseA')
                 for k,v  in pairs(baseA) do
                         lp(k,v)
                 end
+                ll('baseB type')
                 lp(type(baseB))
+                ll('baseB')
                 for k,v  in pairs(baseB) do
                         lp(k,v)
                 end
@@ -50,8 +59,10 @@ end
 
 function Route:run(router)
         ls('route.run')
-        --get
-        --post
+        ll('router')
+        for k,v in ipairs(router) do
+            lp(k,v)
+        end
         local url = "/def"
         local method = "GET"
 

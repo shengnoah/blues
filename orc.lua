@@ -26,18 +26,17 @@ function Application:new()
         app.req = Request:getInstance()
         app.get = function(this, url, callback)
                 ls('Application.app.get')
+                ll('this type')
                 lp(type(this))
-                ll()
+                ll('this')
                 for k,v in pairs(this) do
                         lp(k,v)
                 end
-                lp("-----------------")
-                lp(type(url))
+                ll('url')
                 lp(url)
-                lp("-----------------")
+                ll('callback type')
                 lp(type(callback))
-                --callback()
-                lp("-----------------")
+                ll()
                 app:router(this, url, callback, "GET")
                 le('Application.app.get')
         end
@@ -59,7 +58,12 @@ function Application:new()
         base.__call = base.init
 
         setmetatable(app, base)
-
+        ll('APP Type')
+        lp(type(app))
+        ll('APP')
+        for k,v in pairs(app) do
+            lp(k,v)
+        end
         le('Application:new')
         return app
 end

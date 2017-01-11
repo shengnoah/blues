@@ -1,15 +1,19 @@
+local colors = require("ansicolors")
+
 sw_pt=1
-sw_lp=0
+sw_lp=1
 sw_ls=1
-sw_le=0
+sw_le=1
 sw_la=1
-sw_ll=0
+sw_ll=1
 
 function pt(...)
     if sw_pt == 0 then
         return
     end
-    print(...)
+    local metadata=...
+    print(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
+    
 end
 
 function lp(...)
@@ -44,10 +48,15 @@ function le(...)
 end
 
 function ll(...)
-    if sw_ll == 0 then
-        return
+    var_name = ''
+    if sw_ll == 0 then return end
+
+    if type(arg[1]) == 'nil' then
+        var_name=' '
+    else
+        var_name=arg[1]
     end
-    pt('-------------------------------------------------')
+    pt('-----'..var_name..'-----')
 end
 
 
