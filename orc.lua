@@ -4,15 +4,20 @@ local Request = require("request")
 local Application = {}
 
 function Application:init(this, req, res)
+        ls('Application:init')
+        le('Application:init')
 end
 
 function Application:new()
+        ls('Application:new')
         local base = {}
         base.id = 1123
 
         function base.init(this, req, res)
-                lp("init")
+        ls('Application.base.init')
+                lp("base:init")
                 lp(base.id)
+        le('Application.base.init')
         end
 
         local app = {}
@@ -20,7 +25,7 @@ function Application:new()
         app.router = Route:getInstance()
         app.req = Request:getInstance()
         app.get = function(this, url, callback)
-                ls('app:get')
+                ls('Application.app.get')
                 lp(type(this))
                 ll()
                 for k,v in pairs(this) do
@@ -34,20 +39,20 @@ function Application:new()
                 --callback()
                 lp("-----------------")
                 app:router(this, url, callback, "GET")
-                le('app:get')
+                le('Application.app.get')
         end
 
         app.post = function(this, url, callback)
-                ls('app.post')
+                ls('Application.app.post')
                 app:router(this, url, callback, "POST")
-                le('app.post')
+                le('Application.app.post')
         end
 
         app.run = function()
                 fun = Route:run(app.router)
-                ls('app.run')
+                ls('Application.app.run')
                 fun(app.req, app.id)
-                le('app.run')
+                le('Application.app.run')
         end
 
 
@@ -55,15 +60,18 @@ function Application:new()
 
         setmetatable(app, base)
 
+        le('Application:new')
         return app
 end
 
 function Application:get1(url, callback)
+        ls('Application:get1')
         app.router(url, callback)
+        le('Application:get1')
 end
 
 function Application:doEvent()
-        lp("doEvent")
+        ls('Application:doEvent')
         app.router("one", function()
                 lp("test1")
         end)
@@ -74,13 +82,14 @@ function Application:doEvent()
                 lp("test3")
         end)
         Route:run(app.router)
+        le('Application:doEvent')
 end
 
 function Application:run()
+        ls('Application:run')
         fun = Route:run(app.router)
-        lp("@@@@@ Application:run(start)@@@@@@@")
         fun(app.req, app.id)
-        lp("@@@@@ Applicaiton:run( end )@@@@@@@")
+        le('Application:run')
 end
 
 function Application:fin()

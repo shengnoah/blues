@@ -2,9 +2,12 @@ local tinsert = table.insert
 local Route =  {}
 
 function Route:Init()
+        ls('route.Init')
+        le('route.Init')
 end
 
 function Route:getInstance()
+        ls('route.getInstance')
         local instance = {}
         instance.map = {
             get = {},   --get
@@ -15,7 +18,7 @@ function Route:getInstance()
 
         local base = {}
         function base.register(this, baseA, baseB, url, callback, meta)
-                ls('base.register')
+                ls('route.base.register')
                 lp(meta)
                 lp(type(this))
                 for k,v  in pairs(this) do
@@ -36,14 +39,17 @@ function Route:getInstance()
                 elseif meta == "POST" then
                         tinsert(this.map.post, {url, callback})
                 end
+                le('route.base.register')
         end
 
         base.__call = base.register
         setmetatable(instance, base)
+        le('route.getInstance')
         return instance
 end
 
 function Route:run(router)
+        ls('route.run')
         --get
         --post
         local url = "/def"
@@ -77,6 +83,7 @@ function Route:run(router)
         end
 --]]
         --return router.map
+        le('route.run')
 end
 
 function Route:match()
