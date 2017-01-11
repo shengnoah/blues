@@ -82,3 +82,32 @@ test def
 ```
 以上的数据其实很多都程序单体函数程序的数据，而从路由业务的角度来着，我们最应该关注监控的数据，是路由map中别注册进入的函数。
 加入了lm的日志输出方法，会将当前路由表显示出来，日志格式如下，而在register时输出的是路由表态变化的过程。
+
+```
+DBG: =============== [s]:Application.app.run <-
+DBG: =============== [s]:route.run <-
+DBG: -----MAP.GET-----
+1       /testcase
+2       function: 0x1ee1650
+1       /def
+2       function: 0x1edce10
+DBG: -----MAP.POST-----
+1       /post
+2       function: 0x1ef07e0
+1       /post1
+2       function: 0x1eebd40
+1       /log
+2       function: 0x1ef1ee0
+DBG: -----router-----
+DBG: /post
+DBG: function: 0x1ef07e0
+DBG: /post1
+DBG: function: 0x1eebd40
+DBG: /log
+DBG: function: 0x1ef1ee0
+DBG: =============== [e]:route.run.POST <-
+log
+DBG: =============== [e]:Application.app.run <-
+```
+
+
