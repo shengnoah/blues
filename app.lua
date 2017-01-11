@@ -27,6 +27,9 @@ app:post("/post1", function(request,id)
         lp("test post1")
 end)
 
+app:post("/log", function(request,id)
+        lm("log")
+end)
 --]]
 
 --[[

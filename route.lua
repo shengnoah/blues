@@ -50,15 +50,16 @@ function Route:getInstance()
                 end
 
                 ll('MAP.GET')
+                lm('===')
                 for k, v in pairs(this.map.get) do 
                     for key,var in pairs(v) do
-                        lsp(key,var)
+                        lm(key,var)
                     end
                 end
                 ll('MAP.POST')
                 for k, v in pairs(this.map.post) do 
                     for key,var in pairs(v) do
-                        lsp(key,var)
+                        lm(key,var)
                     end
                 end
 
@@ -77,8 +78,8 @@ function Route:run(router)
         for k,v in ipairs(router) do
             lp(k,v)
         end
-        local url = "/def"
-        local method = "GET"
+        local url = "/log"
+        local method = "POST"
 
         if method == "POST" then
                 for k,v in pairs(router.map.post) do

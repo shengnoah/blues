@@ -1,12 +1,12 @@
 local colors = require("ansicolors")
 
-sw_pt=1
+sw_pt=0
 sw_lp=1
 sw_ls=1
 sw_le=1
-sw_lr=1
 sw_ll=1
-sw_la=1
+sw_lr=1
+sw_lm=1
 
 
 function pt(...)
@@ -26,7 +26,8 @@ function pct(...)
     print(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
 end
 
-function lsp(...)
+function lm(...)
+    if sw_lm == 0 then return end
     print(...)
 end
 
@@ -62,10 +63,6 @@ function ll(...)
     pt('-----'..var_name..'-----')
 end
 
-
-function la(...)
-    --pt(...)
-end
 
 function lr(...)
     --pt(...)
