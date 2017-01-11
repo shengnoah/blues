@@ -110,9 +110,9 @@ log
 DBG: =============== [e]:Application.app.run <-
 ```
 带“DBG：”字样的是有颜色输出，最后在route.run.POST时序结束后，调用了一个新注册的POST方法”log“,对应的路由也是'/log',这样一来log日志就被分成了3大类：
-1.时序日志。
-2.函数单体形参，retuan的，入力出力数据日志。
-3.路由表日志。
+### 1.时序日志。
+### 2.函数单体形参，retuan的，入力出力数据日志。
+### 3.路由表日志。
 
 ```lua
 app:post("/log", function(request,id)
