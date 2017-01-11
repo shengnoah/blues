@@ -99,6 +99,7 @@ function Route:run(router)
                         lp(router.map.post[k][1])
                         lp(router.map.post[k][2])
                         if router.map.post[k][1] == url then
+                                le('route.run.POST')
                                 return router.map.post[k][2]
                         end
                 end
@@ -109,6 +110,7 @@ function Route:run(router)
                         lp(router.map.get[k][1])
                         lp(router.map.get[k][2])
                         if router.map.get[k][1] == url then
+                                le('route.run.GET')
                                 return router.map.get[k][2]
                         end
                 end
