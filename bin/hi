@@ -1,0 +1,61 @@
+#!/usr/bin/env luajit
+
+package.path = './?.lua;' .. package.path
+
+--local generator = require("bin.scaffold.generator")
+--local generator = require("bin.scaffold.build.app")
+local launcher = require("bin.scaffold.launcher")
+local version = require("config").VERSION
+local framework = require("config").FW_NAME
+local path = '/usr/local/'..framework
+
+local usages = framework.." v" .. version  .. [[, a Lua web framework based on OpenResty.
+
+Usage: ]] .. framework.. " ".. [[COMMAND [OPTIONS]
+
+Commands:
+ new [name]             Create a new application
+ start                  Starts the server
+ stop                   Stops the server
+ restart                Restart the server 
+ version                Show version of framework
+ path                   Show framework install path
+ help                   Show help tips
+]]
+
+
+-- if debug?
+if arg[#arg] == '--debug' then
+    table.remove(arg, #arg)
+end
+
+-- parse commands and options
+if arg[1] == 'new' and arg[2] then
+    launcher.project(arg[2]) 
+    launcher.app(arg[2]) 
+elseif arg[1] == 'middleware' then
+    launcher.middleware(arg[2],arg[3]) 
+elseif arg[1] == 'project' then
+    launcher.project(arg[2]) 
+elseif arg[1] == 'app' then
+    launcher.app(arg[2]) 
+elseif arg[1] == 'start' then
+    launcher.start() -- start application
+elseif arg[1] == 'stop' then
+    launcher.stop() -- stop application
+elseif arg[1] == 'restart' then
+    launcher.stop()
+    launcher.start()
+elseif arg[1] == 'reload' then
+    launcher.reload()
+elseif arg[1] == 'help' or arg[1] == '-h' then
+    print(usages)
+elseif arg[1] == 'version' or arg[1] == '-v' then
+    print(version) -- show framework version
+elseif arg[1] == 'path' then
+    print(path)
+elseif arg[1] == nil then
+    print(usages)
+else
+    print("[".. framework .."] unsupported commands or options")
+end
