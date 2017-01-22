@@ -2,7 +2,7 @@
 
 PACKAGE_PATH="$1"
 SETUP_PATH="/usr/local/bin/"
-FW_NAME="orc"
+FW_NAME="hi"
 
 echo "start installing $FW_NAME..."
 
