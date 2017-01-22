@@ -1,7 +1,10 @@
 -- most code is from https://github.com/idevz/vanilla/blob/master/vanilla/sys/nginx/directive.lua
 
-package.path = './app/?.lua;' .. package.path
-package.cpath = './app/library/?.so;' .. package.cpath
+--package.path = './app/?.lua;' .. package.path
+--package.cpath = './app/library/?.so;' .. package.cpath
+
+package.path = './app/?.lua;/usr/local/hi/fw/?.lua;' .. package.path
+package.cpath = './app/library/?.so;/usr/local/hi/fw/?.so;' .. package.cpath
 
 
 local Directive = {}

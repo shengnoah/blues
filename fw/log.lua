@@ -34,33 +34,38 @@ end
 
 function ls(...)
     fn_name=''
+--[[
     if type(arg[1]) == 'nil' then
         fn_name=' '
     else
         fn_name=arg[1]
     end
- 
+ ]]
     pt('=============== [s]:'..fn_name..' <-')
 end
 
 function le(...)
     if sw_le == 0 then return end
+--[[
     if type(arg[1]) == 'nil' then
         fn_name=' '
     else
         fn_name=arg[1]
     end
+--]]
     pt('=============== [e]:'..fn_name..' <-') 
 end
 
 function ll(...)
     var_name = ''
     if sw_ll == 0 then return end
+--[[
     if type(arg[1]) == 'nil' then
         var_name=' '
     else
         var_name=arg[1]
     end
+--]]
     pt('-----'..var_name..'-----')
 end
 

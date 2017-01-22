@@ -370,16 +370,29 @@ nginx -s reload -p `pwd`/ -c conf/nginx-${PROFILE}.conf
 ]]
 
 
+local app_lua = [[
+require "log"
+local Application = require "orc"
+app = Application.new()
+
+app:get("/hilua", function(request,id)
+    ngx.say('hilua') 
+end)
+
+return app.run()
+]]
+
 
 local Generator = {}
 
 Generator.files = {
     --['.gitignore'] = gitignore,
-    ['app/main.lua'] = main_tpl,
-    ['app/router.lua'] = router_tpl,
-    ['app/routes/user.lua'] = user_router_tpl,
-    ['app/routes/test.lua'] = test_router_tpl,
-    ['app/views/index.html'] = index_view_tpl,
+    ['app/app.lua'] = app_lua,
+    --['app/main.lua'] = main_tpl,
+    --['app/router.lua'] = router_tpl,
+    --['app/routes/user.lua'] = user_router_tpl,
+    --['app/routes/test.lua'] = test_router_tpl,
+    --['app/views/index.html'] = index_view_tpl,
     --['app/middleware/README.md'] = middleware_tpl,
     --['app/static/README.md'] = static_tpl, -- static files directory,e.g. js/css/img
     --['conf/README.md'] = ngx_conf_directory, -- nginx config directory

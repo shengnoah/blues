@@ -9,7 +9,7 @@ ngx_conf.common = { -- directives
 	-- INIT_BY_LUA_FILE = './app/nginx/init.lua',
 	-- LUA_PACKAGE_PATH = '',
 	-- LUA_PACKAGE_CPATH = '',
-	CONTENT_BY_LUA_FILE = './app/main.lua',
+	CONTENT_BY_LUA_FILE = './app/app.lua',
 	STATIC_FILE_DIRECTORY = './app/static'
 }
 

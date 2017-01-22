@@ -91,8 +91,8 @@ function Route:run(router)
             lp(k,v)
         end
 
-        local url = "/log"
-        local method = "POST"
+        local url = "/hilua"
+        local method = "GET"
 
         if method == "POST" then
                 for k,v in pairs(router.map.post) do
