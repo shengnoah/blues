@@ -91,6 +91,11 @@ function Route:run(router)
             lp(k,v)
         end
 
+        local req_uri = ngx.var.request_uri
+        local req_url = ngx.unescape_uri(request_uri)
+        local req_method = ngx.req.get_method()
+
+
         local url = "/hilua"
         local method = "GET"
 
