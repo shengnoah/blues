@@ -16,9 +16,7 @@ int add(lua_State* L) {
 
 
 int prn(lua_State* L) {
-    double op1 = luaL_checknumber(L, 1);
-    double op2 = luaL_checknumber(L, 2);
-    lua_pushnumber(L, op1 + op2);
+    puts("CandyLab, Hi LUA!");
     return 1;
 }
 int luaopen_libtangguo(lua_State* L)

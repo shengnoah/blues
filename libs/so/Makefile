@@ -14,6 +14,8 @@ libtangguo.so : tangguo.c
 	#gcc --shared -Wall -fPIC -O2 $^ -o $@ $(LUALIB)
 	gcc --shared -fPIC -O2 $^ -o $@ $(LUALIB)
 
-
+install:
+	sudo cp libtangguo.so /usr/lib
+	sudo ldconfig	
 clean:
 	rm -f libtangguo.so

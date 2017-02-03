@@ -1,5 +1,6 @@
 #ifndef __tangguo_h__
 #define __tangguo_h__
+#include <stdio.h>
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
