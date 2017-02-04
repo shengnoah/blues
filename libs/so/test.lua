@@ -1,7 +1,14 @@
 local aprn = package.loadlib("libtangguo.so", "prn")
 local aadd = package.loadlib("libtangguo.so", "add")
 local asub = package.loadlib("libtangguo.so", "sub")
+local asplit = package.loadlib("libtangguo.so", "split")
 local ret = aprn(1,6)
+
+local ret = asplit("hi,,there",",")
+
+for k,v in pairs(ret) do
+    print(k, v)
+end
 
 local ret = aadd(1,5)
 print(ret)
