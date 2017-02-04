@@ -372,10 +372,13 @@ nginx -s reload -p `pwd`/ -c conf/nginx-${PROFILE}.conf
 
 local app_lua = [[
 require "log"
+local HiLog = require "HiLog"
 local Application = require "orc"
 app = Application.new()
 
 app:get("/hilua", function(request,id)
+    ret = HiLog:log()   
+    ngx.say(ret)
     ngx.say('hilua') 
 end)
 

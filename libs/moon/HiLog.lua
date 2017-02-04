@@ -18,7 +18,8 @@ do
   _base_0.__class = _class_0
   local self = _class_0
   self.log = function(self)
-    return print("HiLog...")
+    print("HiLog...")
+    return "HiLog..."
   end
   HiLog = _class_0
   return _class_0

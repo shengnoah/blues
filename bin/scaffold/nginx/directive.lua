@@ -3,8 +3,8 @@
 --package.path = './app/?.lua;' .. package.path
 --package.cpath = './app/library/?.so;' .. package.cpath
 
-package.path = './app/?.lua;/usr/local/hi/fw/?.lua;' .. package.path
-package.cpath = './app/library/?.so;/usr/local/hi/fw/?.so;' .. package.cpath
+package.path = './app/?.lua;/usr/local/hi/fw/?.lua;/usr/local/hi/libs/moon/?.lua;' .. package.path
+package.cpath = './app/library/?.so;/usr/local/hi/fw/?.so;/usr/local/hi/libs/moon/?.so;' .. package.cpath
 
 
 local Directive = {}
