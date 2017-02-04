@@ -11,12 +11,14 @@ extern int add(lua_State* L);
 extern int sub(lua_State* L);
 extern int prn(lua_State* L);
 extern int split(lua_State* L);
+extern int itable(lua_State* L);
 
 static luaL_Reg libtangguo[] = {
     {"add", add},
     {"sub", sub},
     {"prn", prn},
     {"split", split},
+    {"itable", itable},
     {NULL, NULL}
 };
 

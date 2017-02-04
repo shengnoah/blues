@@ -38,11 +38,24 @@ int split(lua_State* L) {
     lua_pushstring(L, s);
     lua_rawseti(L, -2, i);
  
-    //puts(s);
-    //puts(sep);
-    puts("Split");
     return 1;  /* return the table */
 }
+
+int itable(lua_State* L) {
+    const char *s = luaL_checkstring(L, 1);
+    const char *sep = luaL_checkstring(L, 2);
+ 
+    lua_newtable(L);  /* result */
+ 
+    /* push last substring */
+    lua_pushstring(L, s);
+    lua_rawseti(L, -2, 1);
+ 
+    lua_pushstring(L, sep);
+    lua_rawseti(L, -2, 2);
+    return 1;  /* return the table */
+}
+
 
 int luaopen_libtangguo(lua_State* L)
 {
