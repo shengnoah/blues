@@ -57,6 +57,14 @@ int itable(lua_State* L) {
 }
 
 
+int cjson_new(lua_State* L) {
+    lua_newtable(L);
+    /* Set cjson.null */
+    lua_pushlightuserdata(L, NULL);
+    lua_setfield(L, -2, "null");
+    return 1;
+}
+
 int luaopen_libtangguo(lua_State* L)
 {
     luaL_openlibs(L);

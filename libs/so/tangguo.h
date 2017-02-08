@@ -12,6 +12,7 @@ extern int sub(lua_State* L);
 extern int prn(lua_State* L);
 extern int split(lua_State* L);
 extern int itable(lua_State* L);
+extern int cjson_new(lua_State* L);
 
 static luaL_Reg libtangguo[] = {
     {"add", add},
@@ -19,6 +20,7 @@ static luaL_Reg libtangguo[] = {
     {"prn", prn},
     {"split", split},
     {"itable", itable},
+    {"cjson_new", cjson_new},
     {NULL, NULL}
 };
 
