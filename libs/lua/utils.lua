@@ -1,4 +1,5 @@
-local function is_array(table)
+local utils = {}
+function utils:is_array(table)
     local max = 0
     local count = 0
     for k, v in pairs(table) do
@@ -15,9 +16,9 @@ local function is_array(table)
 
     return max
 end
-local serialise_value
+--utils:serialise_value
 
-local function serialise_table(value, indent, depth)
+function utils:serialise_table(value, indent, depth)
     local spacing, spacing2, indent2
     if indent then
         spacing = "\n" .. indent
@@ -31,7 +32,7 @@ local function serialise_table(value, indent, depth)
         return "Cannot serialise any further: too many nested tables"
     end
 
-    local max = is_array(value)
+    local max = utils:is_array(value)
 
     local comma = false
     local fragment = { "{" .. spacing2 }
@@ -51,8 +52,8 @@ local function serialise_table(value, indent, depth)
                 table.insert(fragment, "," .. spacing2)
             end
             table.insert(fragment,
-                ("[%s] = %s"):format(serialise_value(k, indent2, depth),
-                                     serialise_value(v, indent2, depth)))
+                ("[%s] = %s"):format(utils:serialise_value(k, indent2, depth),
+                                     utils:serialise_value(v, indent2, depth)))
             comma = true
         end
     end
@@ -61,7 +62,7 @@ local function serialise_table(value, indent, depth)
     return table.concat(fragment)
 end
 
-function serialise_value(value, indent, depth)
+function utils:serialise_value(value, indent, depth)
     if indent == nil then indent = "" end
     if depth == nil then depth = 0 end
 
@@ -74,21 +75,10 @@ function serialise_value(value, indent, depth)
            type(value) == "boolean" then
         return tostring(value)
     elseif type(value) == "table" then
-        return serialise_table(value, indent, depth)
+        return utils:serialise_table(value, indent, depth)
     else
         return "\"<" .. type(value) .. ">\""
     end
 end
 
-meta_info = {
-    key = "test key:",
-    values = { 
-        k = "key",
-	v = "value"
-    },
-    testcase = "null"
-}
-
-val = {}
-
-print(serialise_value(meta_info))
+return utils
