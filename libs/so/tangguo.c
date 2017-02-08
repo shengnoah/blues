@@ -65,6 +65,35 @@ int cjson_new(lua_State* L) {
     return 1;
 }
 
+int newID(lua_State* L) {
+    size_t iLen = sizeof(struct HiId);
+    struct HiId *pHiId;
+    pHiId = (struct HiId *)lua_newuserdata(L, iLen);
+
+    luaL_getmetatable(L, "newID");
+    lua_setmetatable(L, -2);
+    return 1;
+}
+
+int setID(lua_State* L) {
+    struct HiId *pHiId = (struct HiId*)lua_touserdata(L, 1);
+    luaL_argcheck(L, pHiId != NULL, 1, "Wrong Parameter");
+    
+    const char *pValue = luaL_checkstring(L, 2);
+    luaL_argcheck(L, pHiId!= NULL, 2, "Wrong Parameter");
+    pHiId->value = pValue; 
+    printf("setID:%s\n", pHiId->value);
+    return 0;
+}
+
+int getID(lua_State* L) {
+    struct HiId *pHiId= (struct HiId*)lua_touserdata(L, 1);
+    luaL_argcheck(L, pHiId != NULL, 1, "Wrong Parameter");
+    printf("getID:%s\n", pHiId->value);
+    lua_pushstring(L, pHiId->value);
+
+    return 1;
+}
 int luaopen_libtangguo(lua_State* L)
 {
     luaL_openlibs(L);

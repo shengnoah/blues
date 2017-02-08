@@ -4,6 +4,9 @@ local asub = package.loadlib("libtangguo.so", "sub")
 local asplit = package.loadlib("libtangguo.so", "split")
 local itable = package.loadlib("libtangguo.so", "itable")
 local cjson_new = package.loadlib("libtangguo.so", "cjson_new")
+local newID= package.loadlib("libtangguo.so", "newID")
+local setID= package.loadlib("libtangguo.so", "setID")
+local getID= package.loadlib("libtangguo.so", "getID")
 
 local ret = itable("elementA","elementB")
 for k,v in pairs(ret) do
@@ -42,8 +45,12 @@ if cjson.null == "null" then
     print("OK")
 end
 
-
 if cjson.null == tmp then
     print("OK")
 end
+
+hiObj = newID()
+setID(hiObj, "testvalue")
+ret = getID(hiObj)
+print(ret)
 
