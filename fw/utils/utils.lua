@@ -16,7 +16,7 @@ function utils:is_array(table)
 
     return max
 end
---utils:serialise_value
+--utils:pprint
 
 function utils:serialise_table(value, indent, depth)
     local spacing, spacing2, indent2
@@ -42,7 +42,7 @@ function utils:serialise_table(value, indent, depth)
             if comma then
                 table.insert(fragment, "," .. spacing2)
             end
-            table.insert(fragment, serialise_value(value[i], indent2, depth))
+            table.insert(fragment, pprint(value[i], indent2, depth))
             comma = true
         end
     elseif max < 0 then
@@ -52,8 +52,8 @@ function utils:serialise_table(value, indent, depth)
                 table.insert(fragment, "," .. spacing2)
             end
             table.insert(fragment,
-                ("[%s] = %s"):format(utils:serialise_value(k, indent2, depth),
-                                     utils:serialise_value(v, indent2, depth)))
+                ("[%s] = %s"):format(utils:pprint(k, indent2, depth),
+                                     utils:pprint(v, indent2, depth)))
             comma = true
         end
     end
@@ -62,7 +62,7 @@ function utils:serialise_table(value, indent, depth)
     return table.concat(fragment)
 end
 
-function utils:serialise_value(value, indent, depth)
+function utils:pprint(value, indent, depth)
     if indent == nil then indent = "" end
     if depth == nil then depth = 0 end
 
