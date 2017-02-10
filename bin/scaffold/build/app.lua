@@ -373,12 +373,23 @@ nginx -s reload -p `pwd`/ -c conf/nginx-${PROFILE}.conf
 local app_lua = [[
 require "log"
 local HiLog = require "HiLog"
+local utils= require "utils.utils"
 local Application = require "orc"
 app = Application.new()
 
 app:get("/hilua", function(request,id)
     ret = HiLog:log()   
     ngx.say(ret)
+
+    meta_info = {
+        key = "test key:",
+        values = {
+            k = "key",
+            v = "value"
+        },
+        testcase = "null"
+    }
+    ngx.say(utils:pprint(meta_info))
     ngx.say('hilua') 
 end)
 
