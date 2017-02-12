@@ -1,5 +1,6 @@
 local tinsert = table.insert
 local req = require "nginx"
+local utils = require "utils.utils"
 local Route =  {}
 
 function Route:Init()
@@ -19,9 +20,9 @@ function Route:getInstance()
 
         local base = {}
         function base.register(this, baseA, baseB, url, callback, meta)
+              
                 ls('route.base.register')
-                --local log = {type = 1, this=this, baseA=baseA, baseB=baseB, url=url, callback=callback, meta=meta}
-
+                ngx.say(utils:pprint(baseA))
                 --get
                 if meta == "GET" then
                         tinsert(this.map.get, {url, callback})
