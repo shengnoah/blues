@@ -69,13 +69,6 @@ function Route:run(router)
                 end
         end
 
---[[
-        if method == "get" then
-                return router.map.get[1][2]
-        elseif method == "post" then
-                return router.map.post[1][2]
-        end
---]]
         --return router.map
         le('route.run')
 end
