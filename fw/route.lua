@@ -1,4 +1,5 @@
 local tinsert = table.insert
+local req = require "nginx"
 local Route =  {}
 
 function Route:Init()
@@ -19,47 +20,13 @@ function Route:getInstance()
         local base = {}
         function base.register(this, baseA, baseB, url, callback, meta)
                 ls('route.base.register')
-                ll('meta')
-                lp(meta)
-                ll('callback')
-                lp(callback)
-                ll('this type')
-                lp(type(this))
-                ll('this')
-                for k,v  in pairs(this) do
-                        lp(k,v)
-                end
-                ll('baseA type')
-                lp(type(baseA))
-                ll('baseA')
-                for k,v  in pairs(baseA) do
-                        lp(k,v)
-                end
-                ll('baseB type')
-                lp(type(baseB))
-                ll('baseB')
-                for k,v  in pairs(baseB) do
-                        lp(k,v)
-                end
-                ll()
+                --local log = {type = 1, this=this, baseA=baseA, baseB=baseB, url=url, callback=callback, meta=meta}
+
                 --get
                 if meta == "GET" then
                         tinsert(this.map.get, {url, callback})
                 elseif meta == "POST" then
                         tinsert(this.map.post, {url, callback})
-                end
-
-                ll('MAP.GET')
-                for k, v in pairs(this.map.get) do 
-                    for key,var in pairs(v) do
-                        lm(key,var)
-                    end
-                end
-                ll('MAP.POST')
-                for k, v in pairs(this.map.post) do 
-                    for key,var in pairs(v) do
-                        lm(key,var)
-                    end
                 end
 
                 le('route.base.register')
@@ -73,31 +40,12 @@ end
 
 function Route:run(router)
         ls('route.run')
-        ll('MAP.GET')
-        for k, v in pairs(router.map.get) do 
-            for key,var in pairs(v) do
-                lm(key,var)
-            end
-        end
-        ll('MAP.POST')
-        for k, v in pairs(router.map.post) do 
-            for key,var in pairs(v) do
-                lm(key,var)
-            end
-         end
+        --local req_url = ngx.unescape_uri(request_uri)
+        local url = req.cmd_url()
+        local method = req.cmd_meth()
 
-        ll('router')
-        for k,v in ipairs(router) do
-            lp(k,v)
-        end
-
-        local req_uri = ngx.var.request_uri
-        local req_url = ngx.unescape_uri(request_uri)
-        local req_method = ngx.req.get_method()
-
-
-        local url = "/hilua"
-        local method = "GET"
+	ngx.say(req.cmd_url())
+	ngx.say(req.cmd_meth())
 
         if method == "POST" then
                 for k,v in pairs(router.map.post) do

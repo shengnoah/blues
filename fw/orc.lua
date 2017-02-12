@@ -50,7 +50,9 @@ function Application:new()
         app.run = function()
                 ls('Application.app.run')
                 fun = Route:run(app.router)
-                fun(app.req, app.id)
+                if fun then
+                    fun(app.req, app.id)
+                end
                 le('Application.app.run')
         end
 
