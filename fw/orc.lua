@@ -51,7 +51,12 @@ function Application:new()
                 ls('Application.app.run')
                 fun = Route:run(app.router)
                 if fun then
-                    fun(app.req, app.id)
+                    local ret = fun(app.req, app.id)
+                    local rtype = type(ret)
+                    if rtype == "table"  then
+                        json = require "cjson"
+                        ngx.say(json.encode(ret))
+                    end
                 end
                 le('Application.app.run')
         end
@@ -94,7 +99,7 @@ end
 function Application:run()
         ls('Application:run')
         fun = Route:run(app.router)
-        fun(app.req, app.id)
+        local ret = fun(app.req, app.id)
         le('Application:run')
 end
 
