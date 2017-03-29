@@ -22,7 +22,7 @@ function Route:getInstance()
         function base.register(this, baseA, baseB, url, callback, meta)
               
                 ls('route.base.register')
-                ngx.say(utils:pprint(baseA))
+                --ngx.say(utils:pprint(baseA))
                 --get
                 if meta == "GET" then
                         tinsert(this.map.get, {url, callback})
@@ -45,8 +45,8 @@ function Route:run(router)
         local url = req.cmd_url()
         local method = req.cmd_meth()
 
-	ngx.say(req.cmd_url())
-	ngx.say(req.cmd_meth())
+	--ngx.say(req.cmd_url())
+	--ngx.say(req.cmd_meth())
 
         if method == "POST" then
                 for k,v in pairs(router.map.post) do

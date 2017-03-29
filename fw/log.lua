@@ -13,7 +13,7 @@ function pt(...)
     if sw_pt == 0 then return end
     local metadata=...
     --print(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
-    ngx.say(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
+    --ngx.say(colors("%{bright}%{cyan}DBG: %{reset}%{magenta}"..tostring(metadata)))
     --print(...)
 end
 

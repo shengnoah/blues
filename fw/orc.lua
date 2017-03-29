@@ -55,6 +55,7 @@ function Application:new()
                     local rtype = type(ret)
                     if rtype == "table"  then
                         json = require "cjson"
+                        ngx.header['Content-Type'] = 'application/json; charset=utf-8'
                         ngx.say(json.encode(ret))
                     end
                 end
