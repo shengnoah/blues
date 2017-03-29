@@ -58,6 +58,10 @@ function Application:new()
                         ngx.header['Content-Type'] = 'application/json; charset=utf-8'
                         ngx.say(json.encode(ret))
                     end
+                    if rtype == "string"  then
+                        ngx.header['Content-Type'] = 'text/plain; charset=UTF-8'
+                        ngx.say(ret)
+                    end
                 end
                 le('Application.app.run')
         end
