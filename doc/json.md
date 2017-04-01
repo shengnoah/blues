@@ -72,6 +72,18 @@ return app.run()
 
 这样以来，我们就可以快速的用Openresty + Lua构建超级微级的路由系统，管理渲染JSON数据，构建一个简单的JSON数据请求服务。
 
+
+
+
+
+### 如何读取HTTP的Body数据。
+curl -X GET  http://0.0.0.0:8089/hilua -d  '{"key":"value"}'
+
+
+
+
+
+
 [Blues](https://github.com/shengnoah/Blues)
 
 [Waterfall](https://github.com/shengnoah/Waterfall)

@@ -8,6 +8,11 @@ local ngx_request = {
   cmd_url = function()
     return ngx.var.request_uri
   end,
+  body = function()
+    ngx.req.read_body()
+    local data = ngx.req.get_body_data()    
+    return data 
+  end,
 }
 
 local lazy_tbl
