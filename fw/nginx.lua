@@ -26,4 +26,15 @@ lazy_tbl = function(tbl, index)
   })  
 end
 
-return ngx_request
+
+
+local build_request
+build_request = function(unlazy)
+        ret = lazy_tbl({}, ngx_request)
+        for k in pairs(ngx_request) do
+             local _ = ret[k]
+        end
+        return ret
+end
+
+return build_request("") 
