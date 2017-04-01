@@ -1,3 +1,4 @@
+local params = require "nginx"
 local Request = {}
 
 function Request:init()
@@ -14,6 +15,7 @@ function Request:getInstance()
                         }
 
         instance.uri = "candy lab"
+        instance.params = params
         setmetatable(instance, { __index = self,
                                  __call = function()
                                                 lp("Initial Instance")
