@@ -8,9 +8,6 @@
 
 可以通简单的命令快速的生成Openresty的配置文件和目录结构：
 
-
-安装[ORC](https://coding.net/u/shengyang/p/orc/git)，然后执行下下面的操作：
-
 ### 1.安装
 
 ```
