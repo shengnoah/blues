@@ -3,7 +3,6 @@ local util = require "cjson.util"
 
 local buffer = {}
 
-
 function buffer.set(_key,_value)
   if _key then
     local g_waf = ngx.shared.g_waf
@@ -21,7 +20,10 @@ function buffer.get(_key)
 end
 
 function buffer.sett(_key,_value)
-  if type(_value) != "table" then return end
+  --if type(_value) != "table" then 
+  --    return 
+  --end
+
   if _key then
     local g_waf = ngx.shared.g_waf    
     local json_value = json.encode(_value)
