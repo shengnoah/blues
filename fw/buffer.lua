@@ -20,7 +20,7 @@ function buffer.get(_key)
 end
 
 function buffer.sett(_key,_value)
-  --if type(_value) != "table" then 
+  --if type(_value) ~= "table" then 
   --    return 
   --end
 
