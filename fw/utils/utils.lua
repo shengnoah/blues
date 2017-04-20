@@ -81,4 +81,17 @@ function utils:pprint(value, indent, depth)
     end
 end
 
+
+function utils:to_json(request)
+    if request.params.content_type == "text/plain" then
+        local ret = request.params.body
+        local json = require "cjson"
+        local util = require "cjson.util"
+        local t = json.decode(ret)
+        --ngx.say(util.serialise_value(t))
+        --ngx.say(request.params.content_type)
+        return t 
+    end
+end
+
 return utils

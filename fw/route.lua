@@ -42,11 +42,11 @@ end
 function Route:run(router)
         ls('route.run')
         --local req_url = ngx.unescape_uri(request_uri)
-        local url = req.cmd_url()
-        local method = req.cmd_meth()
+        --local url = req.cmd_url()
+        --local method = req.cmd_meth()
 
-	--ngx.say(req.cmd_url())
-	--ngx.say(req.cmd_meth())
+        local url = req.cmd_url
+        local method = req.cmd_meth
 
         if method == "POST" then
                 for k,v in pairs(router.map.post) do
@@ -63,7 +63,9 @@ function Route:run(router)
                 for k,v in pairs(router.map.get) do
                         lp(router.map.get[k][1])
                         lp(router.map.get[k][2])
-                        if router.map.get[k][1] == url then
+                        local match = string.find(url, router.map.get[k][1])
+                        --if router.map.get[k][1] == url then
+                        if match then
                                 le('route.run.GET')
                                 return router.map.get[k][2]
                         end
