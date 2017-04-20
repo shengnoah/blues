@@ -13,6 +13,10 @@ local ngx_request = {
     local data = ngx.req.get_body_data()    
     return data 
   end,
+  content_type = function()
+    local content_type = ngx.header['content-type'] 
+    return content_type
+  end
 }
 
 local lazy_tbl

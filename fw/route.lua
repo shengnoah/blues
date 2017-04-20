@@ -63,7 +63,9 @@ function Route:run(router)
                 for k,v in pairs(router.map.get) do
                         lp(router.map.get[k][1])
                         lp(router.map.get[k][2])
-                        if router.map.get[k][1] == url then
+                        local match = string.find(url, router.map.get[k][1])
+                        --if router.map.get[k][1] == url then
+                        if match then
                                 le('route.run.GET')
                                 return router.map.get[k][2]
                         end

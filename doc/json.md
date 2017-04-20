@@ -74,10 +74,52 @@ return app.run()
 
 
 
-
-
 ### 如何读取HTTP的Body数据。
-curl -X GET  http://0.0.0.0:8089/hilua -d  '{"key":"value"}'
+
+我们通过curl向openresty服务器端请求rest，采用GET请求方式，提交一个json,然后路由到对应的匿名函数，通过request.params.body直接取得json数据主体，解析成table变量，放回渲染。
+下面：
+
+
+```
+curl -X GET  http://0.0.0.0/blues -d  '{"key":"value"}'
+```
+
+
+```lua
+app:get("/blues", function(request,id)
+    local ret = request.params.body
+    local json = require "cjson"
+    local util = require "cjson.util"
+    local t = json.decode(ret)
+    ngx.say(util.serialise_value(t))
+    return ret
+end)
+```
+
+
+结果：
+```
+{
+  ["key"] = "value"
+}
+{"key":"value"}
+```
+
+
+
+```lua
+app:get("/blues", function(request,id)
+    local ret = request.params.body
+    local json = require "cjson"
+    local t = json.decode(ret)
+    return t
+end)
+```
+
+结果：
+```
+{"key":"value"}
+```
 
 
 
