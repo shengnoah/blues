@@ -1,7 +1,7 @@
 local params = require "nginx"
 local Request = {}
 
-function Request:getInstance()
+function Request.getInstance()
 
         local name = "request"
         local instance = {
