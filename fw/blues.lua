@@ -3,10 +3,10 @@ local Request = require("request")
 
 local Application = {}
 
-function Application:init(this, req, res)
+function Application.init(this, req, res)
 end
 
-function Application:new()
+function Application.new()
         local base = {}
         base.id = 1123
 
@@ -49,15 +49,10 @@ function Application:new()
         return app
 end
 
-function Application:get1(url, callback)
-        app.router(url, callback)
-end
 
-
-function Application:run()
+function Application.run()
         fun = Route:run(app.router)
         local ret = fun(app.req, app.id)
 end
-
 
 return Application
