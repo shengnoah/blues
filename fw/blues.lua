@@ -23,7 +23,8 @@ function Blues.new(self, lib)
         app.run = function(self)
                 fun = Route:run(app.router)
                 if fun then
-                    local ret = fun(app.req, app.id)
+                    --local ret = fun(this, app.req)
+                    local ret = fun(app)
                     local rtype = type(ret)
                     if rtype == "table"  then
                         json = require "cjson"
