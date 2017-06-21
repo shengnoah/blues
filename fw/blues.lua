@@ -1,28 +1,27 @@
-local Route = require("route")
+local Route = require("proute")
 local Request = require("request")
 
 local Application = {}
 
-function Application.init(this, req, res)
-end
-
 function Application.new()
-        local base = {}
-        base.id = 1123
+        --local base = {}
+        --base.id = 1123
 
-        function base.init(this, req, res)
-        end
+        --function base.init(this, req, res)
+        --    ngx.say("base.init")
+        --end
 
         local app = {}
-        app.id = 123
+        app.baseid = 123456
         app.router = Route:getInstance()
         app.req = Request:getInstance()
-        app.get = function(this, url, callback)
-                app:router(this, url, callback, "GET")
+
+        app.get = function(self, url, callback)
+                app:router(url, callback, "GET")
         end
 
-        app.post = function(this, url, callback)
-                app:router(this, url, callback, "POST")
+        app.post = function(self, url, callback)
+                app:router(url, callback, "POST")
         end
 
         app.run = function()
@@ -42,13 +41,10 @@ function Application.new()
                 end
         end
 
-
-        base.__call = base.init
-
-        setmetatable(app, base)
+        --base.__call = base.init
+        --setmetatable(app, base)
         return app
 end
-
 
 function Application.run()
         fun = Route:run(app.router)
