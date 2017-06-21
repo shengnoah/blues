@@ -6,7 +6,6 @@ local Blues = {}
 Blues.blues_id = 1
 
 function Blues.new(self, lib)
-
         local app = {}
         app.app_id = 1
         app.router = Route:getInstance()
@@ -23,7 +22,6 @@ function Blues.new(self, lib)
         app.run = function(self)
                 fun = Route:run(app.router)
                 if fun then
-                    --local ret = fun(this, app.req)
                     local ret = fun(app)
                     local rtype = type(ret)
                     if rtype == "table"  then
@@ -41,6 +39,28 @@ function Blues.new(self, lib)
         return app
 end
 
-return Blues:new {
-    pipeline='Pipeline System.'
+return Blues:new  {
+
+    pipeline='Pipeline System.',
+
+    run=function(self) 
+        local src = { 
+            metadata= { 
+                data="http data",
+                request = { 
+                    uri="http://www.candylab.net"
+                }   
+            }   
+        }   
+        for k,v in pairs(self.element_list) do
+            v:init()
+            v:push(src)
+            local src, sink = v:match('params')
+            if type(sink) == "table" then
+                self:output(sink, 0)
+            end 
+            src = sink
+        end 
+    end
+
 }
