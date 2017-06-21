@@ -1,18 +1,14 @@
 local Route = require("proute")
 local Request = require("request")
 
-local Application = {}
+local Blues = {}
 
-function Application.new()
-        --local base = {}
-        --base.id = 1123
+Blues.blues_id = 1
 
-        --function base.init(this, req, res)
-        --    ngx.say("base.init")
-        --end
+function Blues.new(self, lib)
 
         local app = {}
-        app.baseid = 123456
+        app.app_id = 1
         app.router = Route:getInstance()
         app.req = Request:getInstance()
 
@@ -24,7 +20,7 @@ function Application.new()
                 app:router(url, callback, "POST")
         end
 
-        app.run = function()
+        app.run = function(self)
                 fun = Route:run(app.router)
                 if fun then
                     local ret = fun(app.req, app.id)
@@ -41,14 +37,9 @@ function Application.new()
                 end
         end
 
-        --base.__call = base.init
-        --setmetatable(app, base)
         return app
 end
 
-function Application.run()
-        fun = Route:run(app.router)
-        local ret = fun(app.req, app.id)
-end
-
-return Application
+return Blues:new {
+    pipeline='Pipeline System.'
+}
