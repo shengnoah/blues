@@ -2,8 +2,6 @@
 一个基于Openresty的WEB演示框架。
 
 
-
-
 #命令
 
 可以通简单的命令快速的生成Openresty的配置文件和目录结构：
@@ -28,19 +26,25 @@ orc middleware blues waf
 
 
 ```lua
-require "log"
-local HiLog = require "HiLog"
-local utils = require "utils.utils"
-local Application = require "orc"
-app = Application.new()
+local bjson = require "utils.bjson"
+local app = require "blues"
 
-
-app:get("/blues", function(request,id)
-    local ret = request.params.body
-    local json = require "cjson"
-    local t = json.decode(ret)
-    return t
+app:get("/blues", function(self)
+    ngx.say(self.app_id)
+    self.app_id = 6 
+    ngx.say(self.app_id)
 end)
+
+app:get("/json", function(self)
+    local ret = self.request.params.body
+    local t = bjson.decode(ret)
+    return t    
+end)
+
+
+return app 
+
+
 ```
 
 
