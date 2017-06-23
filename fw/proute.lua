@@ -31,10 +31,16 @@ function Route.getInstance(self)
         return instance
 end
 
-function Route.run(self, router)
+function Route.finder(self, router)
+
+        for k,v in pairs(router) do
+            ngx.say(k)
+        end
 
         local url = req.cmd_url
         local method = req.cmd_meth
+        ngx.say(url)
+        ngx.say(method)
 
         if method == "POST" then
                 for k,v in pairs(router.map.post) do
