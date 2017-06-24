@@ -23,28 +23,39 @@ function Route.getInstance(self)
         return Route
 end 
 
-
-function Route.finder(self)
-        local url = self.req.cmd_url
-        local method = self.req.cmd_meth
-
-        if method == "POST" then
-                for k,v in pairs(self.map.post) do
-                        if self.map.post[k][1] == url then
-                                return self.map.post[k][2]
-                        end
-                end
+function Route.get(self)
+    local url = self.req.cmd_url
+    for k,v in pairs(self.map.get) do
+        local ret = self:match(url, self.map.get[k][1])
+        if ret then
+            return self.map.get[k][2]
         end
-
-        if method == "GET" then
-                for k,v in pairs(self.map.get) do
-                        local match = string.find(url, self.map.get[k][1])
-                        if match then
-                                return self.map.get[k][2]
-                        end
-                end
-        end
+    end
 end
 
+function Route.post(self)
+    for k,v in pairs(self.map.post) do
+        if self.map.post[k][1] == url then
+            return self.map.post[k][2]
+        end
+    end
+end
+
+function Route.finder(self)
+    local method = self.req.cmd_meth
+
+    local ftbl = {
+        GET=self.get, 
+        POST=self.post
+    }
+
+    local ret = ftbl[method](self)
+    return ret
+end
+
+function Route.match(self, src, dst)
+    local ret = string.find(src, dst)
+    return ret
+end
 
 return Route

@@ -22,22 +22,27 @@ function Blues.new(self, lib)
         app.run = function(self)
             fun = app.router:finder()
             if fun then
-                local ret = fun(app)
-                local rtype = type(ret)
-                if rtype == "table"  then
-                    json = require "cjson"
-                    ngx.header['Content-Type'] = 'application/json; charset=utf-8'
-                    ngx.say(json.encode(ret))
-                end
-                if rtype == "string"  then
-                    ngx.header['Content-Type'] = 'text/plain; charset=UTF-8'
-                    ngx.say(ret)
-                end
+                local content = fun(app)
+                app:response(content)
+            end
+        end
+
+        app.response = function(self,content)
+            local rtype = type(content)
+            if rtype == "table"  then
+                 json = require "cjson"
+                 ngx.header['Content-Type'] = 'application/json; charset=utf-8'
+                 ngx.say(json.encode(content))
+            end
+            if rtype == "string"  then
+                ngx.header['Content-Type'] = 'text/plain; charset=UTF-8'
+                ngx.say(content)
             end
         end
 
         return app
 end
+
 
 return Blues:new  {
     nginx = require("nginx"),
