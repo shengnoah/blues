@@ -22,13 +22,13 @@ function Route.getInstance(self)
         setmetatable(self, instance)
         return Route
 end 
-
 function Route.get(self)
     local url = self.req.cmd_url
-    for k,v in pairs(self.map.get) do
-        local ret = self:match(url, self.map.get[k][1])
+    local map = self.map.get
+    for k,v in pairs(map) do
+        local ret = self:match(url, map[k][1])
         if ret then
-            return self.map.get[k][2]
+            return map[k][2]
         end
     end
 end
