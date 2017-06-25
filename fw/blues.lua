@@ -47,5 +47,5 @@ end
 return Blues:new  {
     nginx = require("nginx"),
     request = require("request"):getInstance(),
-    router = require("rroute"):getInstance()
+    router = require("route"):getInstance()
 }
