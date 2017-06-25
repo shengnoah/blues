@@ -22,6 +22,8 @@ function Route.getInstance(self)
         setmetatable(self, instance)
         return Route
 end 
+
+
 function Route.get(self)
     local url = self.req.cmd_url
     local map = self.map.get
@@ -32,6 +34,7 @@ function Route.get(self)
         end
     end
 end
+
 
 function Route.post(self)
     for k,v in pairs(self.map.post) do
