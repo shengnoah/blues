@@ -7,6 +7,7 @@ function Blues.new(self, lib)
         local app = {}
         app.app_id = 1
 
+        app.bjson = lib.bjson
         app.request = lib.request
         app.router = lib.router
         app.router.req = lib.nginx
@@ -40,12 +41,19 @@ function Blues.new(self, lib)
             end
         end
 
+        app.json = function(self)
+            local jsondata= self.request.params.body
+            local t = self.bjson.decode(jsondata)
+            return t    
+        end
+
         return app
 end
 
 
 return Blues:new  {
     nginx = require("nginx"),
+    bjson = require("utils.bjson"),
     request = require("request"):getInstance(),
     router = require("route"):getInstance()
 }
