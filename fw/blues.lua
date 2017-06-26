@@ -23,11 +23,11 @@ function Blues.new(self, lib)
             fun = app.router:finder()
             if fun then
                 local content = fun(app)
-                app:response(content)
+                app:render(content)
             end
         end
 
-        app.response = function(self,content)
+        app.render= function(self, content)
             local rtype = type(content)
             if rtype == "table"  then
                  json = require "cjson"
@@ -47,5 +47,5 @@ end
 return Blues:new  {
     nginx = require("nginx"),
     request = require("request"):getInstance(),
-    router = require("rroute"):getInstance()
+    router = require("route"):getInstance()
 }

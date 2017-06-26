@@ -1,83 +1,64 @@
 local tinsert = table.insert
-local req = require "nginx"
-local utils = require "utils.utils"
-local Route =  {}
 
-function Route:Init()
-        ls('route.Init')
-        le('route.Init')
-end
+local Route =  {
+    map = {
+        get = {},
+        post = {}
+    }
+}
 
-function Route:getInstance()
-        ls('route.getInstance')
-        local instance = {}
-        instance.map = {
-            get = {},   --get
-            post = {}   --post
-        }
-
-        instance.id = 1
-
-        local base = {}
-        function base.register(this, baseA, baseB, url, callback, meta)
-              
-                ls('route.base.register')
-                --ngx.say(utils:pprint(baseA))
-                --get
-                if meta == "GET" then
-                        tinsert(this.map.get, {url, callback})
-                elseif meta == "POST" then
-                        tinsert(this.map.post, {url, callback})
-                end
-
-                le('route.base.register')
-        end
-
-        base.__call = base.register
-        setmetatable(instance, base)
-        le('route.getInstance')
-        return instance
-end
-
-function Route:run(router)
-        ls('route.run')
-        --local req_url = ngx.unescape_uri(request_uri)
-        --local url = req.cmd_url()
-        --local method = req.cmd_meth()
-
-        local url = req.cmd_url
-        local method = req.cmd_meth
-
-        if method == "POST" then
-                for k,v in pairs(router.map.post) do
-                        lp(router.map.post[k][1])
-                        lp(router.map.post[k][2])
-                        if router.map.post[k][1] == url then
-                                le('route.run.POST')
-                                return router.map.post[k][2]
-                        end
-                end
-        end
-
+function Route.register(self, app, url, callback, method)
         if method == "GET" then
-                for k,v in pairs(router.map.get) do
-                        lp(router.map.get[k][1])
-                        lp(router.map.get[k][2])
-                        local match = string.find(url, router.map.get[k][1])
-                        --if router.map.get[k][1] == url then
-                        if match then
-                                le('route.run.GET')
-                                return router.map.get[k][2]
-                        end
-                end
+            tinsert(self.map.get, {url, callback})
+        elseif method == "POST" then
+            tinsert(self.map.post, {url, callback})
         end
-
-        --return router.map
-        le('route.run')
 end
 
-function Route:match()
-        return true
+
+function Route.getInstance(self)
+        local instance = {}
+        instance.__call = self.register
+        setmetatable(self, instance)
+        return Route
+end 
+
+
+function Route.get(self)
+    local url = self.req.cmd_url
+    local map = self.map.get
+    for k,v in pairs(map) do
+        local ret = self:match(url, map[k][1])
+        if ret then
+            return map[k][2]
+        end
+    end
+end
+
+
+function Route.post(self)
+    for k,v in pairs(self.map.post) do
+        if self.map.post[k][1] == url then
+            return self.map.post[k][2]
+        end
+    end
+end
+
+function Route.finder(self)
+    local method = self.req.cmd_meth
+
+    local ftbl = {
+        GET=self.get, 
+        POST=self.post
+    }
+
+    local ret = ftbl[method](self)
+    return ret
+end
+
+function Route.match(self, src, dst)
+    local ret = string.find(src, dst)
+    return ret
 end
 
 return Route
