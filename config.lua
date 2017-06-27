@@ -1,5 +1,5 @@
-local version = require("fw.hi")
+local version = 0.1
 return {
     VERSION = version,
-    FW_NAME = "hilua"
+    FW_NAME = "blues"
 }
