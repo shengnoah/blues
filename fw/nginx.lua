@@ -6,7 +6,8 @@ local ngx_request = {
     return ngx.var.request_method
   end,
   ip = function()
-    return ngx.var.remote_addr  
+    --return ngx.var.remote_addr  
+    return (ngx.req.get_headers()['X-Real-IP'])
   end,
   cmd_url = function()
     return ngx.var.request_uri
