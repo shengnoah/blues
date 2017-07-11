@@ -5,9 +5,14 @@ local ngx_request = {
   cmd_meth = function()
     return ngx.var.request_method
   end,
-  ip = function()
-    --return ngx.var.remote_addr  
+  rip = function()
     return (ngx.req.get_headers()['X-Real-IP'])
+  end,
+  cip = function()
+    return ngx.var.remote_addr  
+  end,
+  ip = function()
+    return ngx.var.remote_addr  
   end,
   cmd_url = function()
     return ngx.var.request_uri
