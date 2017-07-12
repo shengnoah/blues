@@ -1,4 +1,6 @@
-local ngx_request = {
+local lazytable= {
+
+ngx_request = {
   headers = function()
     return ngx.req.get_headers()
   end,
@@ -28,6 +30,8 @@ local ngx_request = {
   end
 }
 
+}
+
 local lazy_tbl
 lazy_tbl = function(tbl, index)
   return setmetatable(tbl, {
@@ -45,9 +49,9 @@ lazy_tbl = function(tbl, index)
 end
 
 
+--[[
 
-local build_request
-build_request = function(unlazy)
+local build_request = function(unlazy)
         ret = lazy_tbl({}, ngx_request)
         for k in pairs(ngx_request) do
              local _ = ret[k]
@@ -55,4 +59,16 @@ build_request = function(unlazy)
         return ret
 end
 
-return build_request("") 
+--]]
+
+function lazytable.build_request(self, unlazy) 
+        ret = lazy_tbl({}, self.ngx_request)
+        for k in pairs(self.ngx_request) do
+             local _ = ret[k]
+        end
+        return ret
+end
+
+
+--return build_request("") 
+return lazytable 
