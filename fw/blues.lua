@@ -10,7 +10,7 @@ function Blues.new(self, lib)
         app.bjson = lib.bjson
         app.request = lib.request
         app.router = lib.router
-        app.router.req = lib.nginx
+        app.router.req = lib.nginx:build_request("") 
 
         app.get = function(self, url, callback)
             app:router(url, callback, "GET")
