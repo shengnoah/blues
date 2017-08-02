@@ -26,6 +26,7 @@ end
 
 function Route.get(self)
     local url = self.req.cmd_url
+    --local url = ngx.var.request_uri
     local map = self.map.get
     for k,v in pairs(map) do
         local ret = self:match(url, map[k][1])
