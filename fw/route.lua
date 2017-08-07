@@ -38,6 +38,7 @@ end
 
 
 function Route.post(self)
+    local url = self.req.cmd_url
     for k,v in pairs(self.map.post) do
         if self.map.post[k][1] == url then
             return self.map.post[k][2]
