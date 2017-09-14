@@ -371,29 +371,22 @@ nginx -s reload -p `pwd`/ -c conf/nginx-${PROFILE}.conf
 
 
 local app_lua = [[
-require "log"
-local HiLog = require "HiLog"
-local utils= require "utils.utils"
-local Application = require "orc"
-app = Application.new()
+local bjson = require "utils.bjson"
+local app = require "blues"
 
-app:get("/hilua", function(request,id)
-    ret = HiLog:log()   
-    ngx.say(ret)
-
-    meta_info = {
-        key = "test key:",
-        values = {
-            k = "key",
-            v = "value"
-        },
-        testcase = "null"
-    }
-    ngx.say(utils:pprint(meta_info))
-    ngx.say('hilua') 
+app:get("/blues", function(self)
+    ngx.say(self.app_id)
+    self.app_id = 6 
+    ngx.say(self.app_id)
 end)
 
-return app.run()
+app:get("/json", function(self)
+    local ret = self.request.params.body
+    local t = bjson.decode(ret)
+    return t    
+end)
+
+return app 
 ]]
 
 
