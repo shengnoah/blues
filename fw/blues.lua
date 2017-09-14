@@ -23,7 +23,8 @@ function Blues.new(self, lib)
         app.run = function(self)
             fun = app.router:finder()
             if fun then
-                local content = fun(app)
+                --local content = fun(app)
+                local content = fun(app.router)
                 app:render(content)
             end
         end
