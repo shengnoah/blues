@@ -375,15 +375,12 @@ local bjson = require "utils.bjson"
 local app = require "blues"
 
 app:get("/blues", function(self)
-    ngx.say(self.app_id)
-    self.app_id = 6 
-    ngx.say(self.app_id)
+    return "blues"
 end)
 
 app:get("/json", function(self)
-    local ret = self.request.params.body
-    local t = bjson.decode(ret)
-    return t    
+    local t = bjson.decode(self.req.body)
+    return t   
 end)
 
 return app 
