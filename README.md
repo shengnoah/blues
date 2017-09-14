@@ -17,9 +17,9 @@ sudo sh install.sh
 ### 2.创建项目
 
 ```
-orc project blues
-orc app blues
-orc middleware blues waf
+hi project blues
+hi app blues
+hi middleware blues waf
 ```
 
 ### 3.创建应用
@@ -30,21 +30,15 @@ local bjson = require "utils.bjson"
 local app = require "blues"
 
 app:get("/blues", function(self)
-    ngx.say(self.app_id)
-    self.app_id = 6 
-    ngx.say(self.app_id)
+    return "blues"
 end)
 
 app:get("/json", function(self)
-    local ret = self.request.params.body
-    local t = bjson.decode(ret)
-    return t    
+    local t = bjson.decode(self.req.body)
+    return t   
 end)
 
-
 return app 
-
-
 ```
 
 
