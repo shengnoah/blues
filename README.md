@@ -9,17 +9,15 @@
 ### 1.安装
 
 ```
-git clone https://github.com/shengnoah/Blues.git
-cd Blues
+git clone https://github.com/shengnoah/blues.git
+cd blues
 sudo sh install.sh
 ```
 
 ### 2.创建项目
 
 ```
-orc project blues
-orc app blues
-orc middleware blues waf
+hi new blues
 ```
 
 ### 3.创建应用
@@ -30,21 +28,15 @@ local bjson = require "utils.bjson"
 local app = require "blues"
 
 app:get("/blues", function(self)
-    ngx.say(self.app_id)
-    self.app_id = 6 
-    ngx.say(self.app_id)
+    return "blues"
 end)
 
 app:get("/json", function(self)
-    local ret = self.request.params.body
-    local t = bjson.decode(ret)
-    return t    
+    local t = bjson.decode(self.req.body)
+    return t   
 end)
 
-
 return app 
-
-
 ```
 
 
@@ -52,9 +44,9 @@ return app
 ### 4.启动服务
 
 ```
-hi start dev
-hi stop dev
-hi reload dev
+hi start 
+hi stop 
+hi restart 
 ```
 
 ### 5.启动服务
@@ -62,7 +54,7 @@ hi reload dev
 测试接口：
 
 ```
-curl -X GET  http://0.0.0.0/blues -d  '{"key":"value"}'
+curl -X GET  http://0.0.0.0:8888/json -d  '{"key":"value"}'
 ```
 
 返回结果：
