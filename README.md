@@ -9,17 +9,15 @@
 ### 1.安装
 
 ```
-git clone https://github.com/shengnoah/Blues.git
-cd Blues
+git clone https://github.com/shengnoah/blues.git
+cd blues
 sudo sh install.sh
 ```
 
 ### 2.创建项目
 
 ```
-hi project blues
-hi app blues
-hi middleware blues waf
+hi new blues
 ```
 
 ### 3.创建应用
@@ -46,9 +44,9 @@ return app
 ### 4.启动服务
 
 ```
-hi start dev
-hi stop dev
-hi reload dev
+hi start 
+hi stop 
+hi restart 
 ```
 
 ### 5.启动服务
@@ -56,7 +54,7 @@ hi reload dev
 测试接口：
 
 ```
-curl -X GET  http://0.0.0.0/blues -d  '{"key":"value"}'
+curl -X GET  http://0.0.0.0:8888/json -d  '{"key":"value"}'
 ```
 
 返回结果：
