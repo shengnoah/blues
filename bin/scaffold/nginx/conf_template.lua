@@ -51,6 +51,7 @@ http {
 
         # framework runtime
         {{CONTENT_BY_LUA_FILE}}
+        {{CONTENT_BY_LUA}}
     }
 }
 
