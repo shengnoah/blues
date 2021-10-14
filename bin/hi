@@ -19,6 +19,7 @@ Commands:
  stop                   Stops the server
  restart                Restart the server 
  version                Show version of framework
+ build                  Convert Markdown to HTML
  path                   Show framework install path
  help                   Show help tips
 ]]
