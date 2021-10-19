@@ -20,6 +20,7 @@ Commands:
  restart                Restart the server 
  version                Show version of framework
  build                  Convert Markdown to HTML
+ pdf                    Convert HTML to PDF
  path                   Show framework install path
  help                   Show help tips
 ]]
