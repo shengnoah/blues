@@ -5,6 +5,7 @@ package.path = './?.lua;' .. package.path
 --local generator = require("bin.scaffold.generator")
 --local generator = require("bin.scaffold.build.app")
 local launcher = require("bin.scaffold.launcher")
+local heng = require("bin.scaffold.build.heng")
 local version = require("config").VERSION
 local framework = require("config").FW_NAME
 local path = '/usr/local/'..framework
@@ -56,6 +57,10 @@ elseif arg[1] == 'version' or arg[1] == '-v' then
     print(version) -- show framework version
 elseif arg[1] == 'path' then
     print(path)
+elseif arg[1] == 'build' then
+    heng.build(arg[2])     
+elseif arg[1] == 'pdf' then
+    heng.makePDF(arg[2])     
 elseif arg[1] == nil then
     print(usages)
 else
